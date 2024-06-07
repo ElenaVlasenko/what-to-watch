@@ -2,7 +2,7 @@ import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit';
 import { FilmListItem } from '../types';
 import { FilmsApi } from '../api/films-api';
 import { showErrorMessage } from './error-slice';
-import { isNotFoundError } from '../utils';
+import { isAxiosNotFoundError, isNotFoundError } from '../utils';
 
 const createSliceWithThunks = buildCreateSlice({
   creators: { asyncThunk: asyncThunkCreator },
@@ -33,7 +33,10 @@ const similarFilmsSlice = createSliceWithThunks({
   reducers: (create) => ({
     fetchSimilarFilmsAction: create.asyncThunk<FilmListItem[], string, { extra: { filmsApi: FilmsApi }}>(
       async (id, { extra: { filmsApi }, dispatch }) => filmsApi.getSimilar(id).catch((err) => {
-        showErrorMessage(err, dispatch);
+        if (!isAxiosNotFoundError(err)) {
+          showErrorMessage(err, dispatch);
+        }
+
         throw err;
       }),
       {

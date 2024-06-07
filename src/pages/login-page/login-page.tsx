@@ -1,10 +1,12 @@
 import { FormEvent, useState } from 'react';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import { loginAction, selectUser } from '../../store/user-slice';
+import { loginAction } from '../../store/user-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { PageRoute } from '../../const';
+import { selectErrorMessage } from '../../store/error-slice';
+import ErrorPage from '../error-page/error-page';
 
 function isPasswordValid(password: string): boolean {
   return /[A-z]+/.test(password) && /\d+/.test(password);
@@ -20,11 +22,10 @@ function LoginPage(): JSX.Element {
   const [errorMessages, setErrorMessages] = useState<string>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const user = useAppSelector(selectUser);
-  const isAuthorized = !!user;
+  const error = useAppSelector(selectErrorMessage);
 
-  if (isAuthorized) {
-    navigate(PageRoute.Main);
+  if (error) {
+    return <ErrorPage />;
   }
 
   function handleSubmit(evt: FormEvent) {

@@ -2,6 +2,7 @@ import { SerializedError } from '@reduxjs/toolkit';
 import { intervalToDuration } from 'date-fns';
 import { isNil } from 'lodash';
 import { MILLISECONDS_IN_SECOND } from './const';
+import { AxiosError } from 'axios';
 
 export function getRatingName(rating: number): string {
   switch (true) {
@@ -28,6 +29,12 @@ export function getRunTime(runTime: number): string {
   return `${timing.map(toDigitStr).join(':')}`;
 }
 
+const NOT_FOUND_STATUS = 404;
+
 export function isNotFoundError(err: SerializedError): boolean {
-  return err.message?.includes('404') ?? false;
+  return err.message?.includes(NOT_FOUND_STATUS.toString()) ?? false;
+}
+
+export function isAxiosNotFoundError(err: unknown): boolean {
+  return err instanceof AxiosError && err.response?.status === NOT_FOUND_STATUS;
 }

@@ -2,6 +2,7 @@ import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit';
 import { Comment, UserComment } from '../types';
 import { CommentsApi } from '../api/comments-api';
 import { showErrorMessage } from './error-slice';
+import { isAxiosNotFoundError } from '../utils';
 
 const createSliceWithThunks = buildCreateSlice({
   creators: { asyncThunk: asyncThunkCreator },
@@ -31,7 +32,10 @@ const commentsSlice = createSliceWithThunks({
   reducers: (create) => ({
     fetchCommentsAction: create.asyncThunk<Comment[], string, { extra: { commentsApi: CommentsApi }}>(
       async (id, { extra: { commentsApi }, dispatch }) => commentsApi.getList(id).catch((err) => {
-        showErrorMessage(err, dispatch);
+        if (!isAxiosNotFoundError(err)) {
+          showErrorMessage(err, dispatch);
+        }
+
         throw err;
       }),
       {

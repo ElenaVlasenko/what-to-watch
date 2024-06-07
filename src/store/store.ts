@@ -11,8 +11,6 @@ import similarFilmsSlice, { SIMILAR_FILMS_SLICE_NAME } from './similar-films-sli
 import { commentsApi } from '../api/comments-api';
 import { myListApi } from '../api/my-list-api';
 
-export type State = ReturnType<typeof store.getState>;
-
 const store = configureStore({
   reducer: {
     [FILMS_SLICE_NAME]: filmsSlice.reducer,

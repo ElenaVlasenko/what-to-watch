@@ -1,6 +1,6 @@
 import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit';
 import { FilmListItem, PromoFilm } from '../types';
-import { ALL_GENRES, DISPLAYED_FILMS_NUMBER_STEP } from '../const';
+import { ALL_GENRES, DISPLAYED_FILMS_NUMBER_STEP, GENRES_NUMBER } from '../const';
 import { uniq } from 'lodash';
 import { createSelector } from 'reselect';
 import { FilmsApi } from '../api/films-api';
@@ -60,7 +60,7 @@ const filmsSlice = createSliceWithThunks({
       [
         (state: FilmsState) => state.films,
       ],
-      (films) => uniq(films.map((film) => film.genre)).sort()
+      (films) => uniq(films.map((film) => film.genre)).sort().slice(0, GENRES_NUMBER)
     ),
     selectSelectedGenre: (state) => state.selectedGenre
   },

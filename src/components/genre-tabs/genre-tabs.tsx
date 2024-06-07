@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { selectSelectedGenre, setSelectedGenre } from '../../store/films-slice';
+import { resetDisplayedFilmsNumber, selectSelectedGenre, setSelectedGenre } from '../../store/films-slice';
 import GenreTabsItem from './genre-tabs-item';
 
 type Props = {
@@ -16,6 +16,7 @@ function GenreTabs({ genres }: Props): JSX.Element {
     if (evt.target instanceof HTMLAnchorElement) {
       const newSelectedGenre = evt.target.innerHTML;
       dispatch(setSelectedGenre(newSelectedGenre));
+      dispatch(resetDisplayedFilmsNumber());
     }
   };
 

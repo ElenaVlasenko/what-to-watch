@@ -41,7 +41,15 @@ function App(): JSX.Element {
           </ConditionalRoute>
         }
         />
-        <Route path={PageRoute.Login} element={<LoginPage />} />
+        <Route path={PageRoute.Login} element={
+          <ConditionalRoute
+            condition={authorizationStatus !== AuthorizationStatus.Auth}
+            routOnFalse={PageRoute.Main}
+          >
+            <LoginPage />
+          </ConditionalRoute>
+        }
+        />
         <Route path={PageRoute.Film} element={<FilmPagePicker />} />
         <Route path={PageRoute.Player} element={<PlayerPagePicker />} />
         <Route path={PageRoute.FilmComment} element={

@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { addCommentAction, selectIsCommentAddingInProgress } from '../../store/comments-slice';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute, FilmTab } from '../../const';
+import { AppRoute, FilmTab, REVIEW_LENGTH } from '../../const';
 import './review-form.css';
 
 type Props = {
@@ -44,7 +44,7 @@ function ReviewForm({ id }: Props): JSX.Element {
   }
 
   function isFormInputsValueValid() {
-    return review.length > 50 && review.length < 400 && rating;
+    return review.length > REVIEW_LENGTH.MIN && review.length < REVIEW_LENGTH.MAX && rating;
   }
 
   return (

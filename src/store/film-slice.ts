@@ -1,7 +1,7 @@
 import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit';
 import { Film } from '../types';
 import { FilmsApi } from '../api/films-api';
-import { isNotFoundError } from '../utils';
+import { isAxiosNotFoundError, isNotFoundError } from '../utils';
 import { showErrorMessage } from './error-slice';
 
 const createSliceWithThunks = buildCreateSlice({
@@ -32,19 +32,27 @@ const filmSlice = createSliceWithThunks({
     selectIsFilmNotFound: (state) => state.notFound,
   },
   reducers: (create) => ({
+    resetFilmNotFound: create.reducer((state) => {
+      state.notFound = false;
+    }),
     fetchFilmAction: create.asyncThunk<Film, string, { extra: { filmsApi: FilmsApi }}>(
       (id, { extra: { filmsApi }, dispatch }) => filmsApi.getFilm(id).catch((err) => {
-        showErrorMessage(err, dispatch);
+        if (!isAxiosNotFoundError(err)) {
+          showErrorMessage(err, dispatch);
+        }
+
         throw err;
       }),
       {
         fulfilled: (state, action) => {
           state.selectedFilm = action.payload;
           state.isFilmLoading = false;
+          state.notFound = false;
         },
         pending: (state) => {
           state.selectedFilm = null;
           state.isFilmLoading = true;
+          state.notFound = false;
         },
         rejected: (state, action) => {
           if (isNotFoundError(action.error)) {
@@ -66,4 +74,7 @@ export const {
   selectIsFilmNotFound
 } = filmSlice.selectors;
 
-export const { fetchFilmAction } = filmSlice.actions;
+export const {
+  fetchFilmAction,
+  resetFilmNotFound
+} = filmSlice.actions;

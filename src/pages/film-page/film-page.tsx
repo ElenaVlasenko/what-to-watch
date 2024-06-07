@@ -60,7 +60,7 @@ function FilmPage({ selectedFilm, similarFilms }: Props): JSX.Element {
                 <span className="film-card__year">{released}</span>
               </p>
               <div className="film-card__buttons">
-                <FilmCardButtons id={id} videoLink={selectedFilm.videoLink} />
+                <FilmCardButtons id={id} videoLink={selectedFilm.videoLink} filmName={selectedFilm.name} />
                 {authStatus === AuthorizationStatus.Auth
                   ? <Link to={`${AppRoute.Films}${selectedFilm.id}${AppRoute.FilmReview}`} className="btn film-card__button">Add review</Link>
                   : null}

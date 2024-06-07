@@ -23,7 +23,7 @@ function PromoFilm({ promoFilm }: Props): JSX.Element {
           <span className="film-card__year">{promoFilm.released}</span>
         </p>
         <div className="film-card__buttons">
-          <FilmCardButtons id={promoFilm.id} videoLink={promoFilm.videoLink} />
+          <FilmCardButtons id={promoFilm.id} videoLink={promoFilm.videoLink} filmName={promoFilm.name} />
         </div>
       </div>
     </div>

@@ -8,12 +8,13 @@ const createSliceWithThunks = buildCreateSlice({
 
 type PlayerState = {
   videoLink: string;
+  filmName: string;
 }
 
 const initialState: PlayerState = {
   videoLink: '',
+  filmName: ''
 };
-
 
 export const PLAYER_SLICE_NAME = 'player';
 
@@ -22,24 +23,30 @@ const playerSlice = createSliceWithThunks({
   initialState,
   selectors: {
     selectVideoLink: (state) => state.videoLink,
+    selectFilmName: (state) => state.filmName,
   },
   reducers: (create) => ({
-    setVideoLink: create.reducer((state, action: PayloadAction<string>) => {
+    setVideoLink: create.reducer((state, action: PayloadAction<{ videoLink: string; filmName: string }>) => {
       const { payload } = action;
-      state.videoLink = payload;
+      state.videoLink = payload.videoLink;
+      state.filmName = payload.filmName;
     }),
-    fetchVideoLinkAction: create.asyncThunk<string, string, { extra: { filmsApi: FilmsApi }}>(
+    fetchVideoLinkAction: create.asyncThunk<{ videoLink: string; filmName: string }, string, { extra: { filmsApi: FilmsApi }}>(
       async (id, { extra: { filmsApi }, dispatch }) => {
         const film = await filmsApi.getFilm(id).catch((err) => {
           showErrorMessage(err, dispatch);
           throw err;
         });
-        return film.videoLink;
+        return {
+          videoLink: film.videoLink,
+          filmName: film.name
+        };
       },
       {
         fulfilled: (state, action) => {
-          const { payload: videoLink } = action;
-          state.videoLink = videoLink;
+          const { payload } = action;
+          state.videoLink = payload.videoLink;
+          state.filmName = payload.filmName;
         },
       }
     )
@@ -53,4 +60,7 @@ export const {
   fetchVideoLinkAction
 } = playerSlice.actions;
 
-export const { selectVideoLink } = playerSlice.selectors;
+export const {
+  selectVideoLink,
+  selectFilmName
+} = playerSlice.selectors;

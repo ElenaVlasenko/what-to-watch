@@ -1,5 +1,4 @@
 import { buildCreateSlice, asyncThunkCreator, PayloadAction } from '@reduxjs/toolkit';
-import { TIMEOUT_SHOW_ERROR } from '../const';
 import { getMessage } from '../api/handle-error';
 
 const createSliceWithThunks = buildCreateSlice({
@@ -43,10 +42,4 @@ export const {
 
 export const showErrorMessage = (err: unknown, dispatch: (action: unknown) => void) => {
   dispatch(setErrorMessage(getMessage(err)));
-  setTimeout(
-    () => {
-      dispatch(resetErrorMessage());
-    },
-    TIMEOUT_SHOW_ERROR
-  );
 };

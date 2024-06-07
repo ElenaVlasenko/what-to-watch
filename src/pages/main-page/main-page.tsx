@@ -8,6 +8,8 @@ import { ALL_GENRES } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { selectPromoFilm, selectGenres, selectDisplayedFilms, selectDisplayedFilmsNumber, resetDisplayedFilmsNumber, selectFilteredFilmsNumber } from '../../store/films-slice';
 import PromoFilm from '../../components/promo-film/promo-film';
+import { selectErrorMessage } from '../../store/error-slice';
+import ErrorPage from '../error-page/error-page';
 
 function MainPage(): JSX.Element {
 
@@ -18,10 +20,15 @@ function MainPage(): JSX.Element {
   const filteredFilmsNumber = useAppSelector(selectFilteredFilmsNumber);
   const displayedFilmsNumber = useAppSelector(selectDisplayedFilmsNumber);
   const isAllFilmDisplayed = filteredFilmsNumber <= displayedFilmsNumber;
+  const error = useAppSelector(selectErrorMessage);
 
   useEffect(() => () => {
     dispatch(resetDisplayedFilmsNumber());
   },[dispatch]);
+
+  if (error) {
+    return <ErrorPage />;
+  }
 
   return (
     <>

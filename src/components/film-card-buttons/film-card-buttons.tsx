@@ -7,9 +7,10 @@ import { fetchIsFavoritesAction, selectAddingToFavoritesOfferIds, selectAuthoriz
 type Props = {
   id: string;
   videoLink: string;
+  filmName: string;
 };
 
-function FilmCardButtons({ id, videoLink }: Props): JSX.Element {
+function FilmCardButtons({ id, videoLink, filmName }: Props): JSX.Element {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ function FilmCardButtons({ id, videoLink }: Props): JSX.Element {
   const isFavorite = myFilms.some((film) => film.id === id);
 
   function handleClickPlayer() {
-    dispatch(setVideoLink(videoLink));
+    dispatch(setVideoLink({ videoLink, filmName }));
     navigate(`${AppRoute.Player}${id}`);
   }
 

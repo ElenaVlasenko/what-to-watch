@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import FilmPage from './film-page';
-import { fetchFilmAction, selectIsFilmLoading, selectIsFilmNotFound, selectSelectedFilm } from '../../store/film-slice';
+import { fetchFilmAction, resetFilmNotFound, selectIsFilmLoading, selectIsFilmNotFound, selectSelectedFilm } from '../../store/film-slice';
 import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { fetchSimilarFilmsAction, selectIsSimilarFilmsLoading, selectIsSimilarFilmsNotFound, selectSimilarFilms } from '../../store/similar-films-slice';
 import { fetchCommentsAction } from '../../store/comments-slice';
 import Spinner from '../../components/spinner/spinner';
 import { selectErrorMessage } from '../../store/error-slice';
+import ErrorPage from '../error-page/error-page';
 
 function FilmPagePicker(): JSX.Element | null{
   const { id } = useParams();
@@ -34,6 +35,12 @@ function FilmPagePicker(): JSX.Element | null{
         dispatch(fetchSimilarFilmsAction(id));
         dispatch(fetchCommentsAction(id));
       }
+
+      return () => {
+        if (isSelectedFilmNotFound === true){
+          dispatch(resetFilmNotFound());
+        }
+      };
     },
     [selectedFilm, id, isSelectedFilmLoading, isSelectedFilmNotFound, isSimilarFilmsLoading, isSimilarNotFound, dispatch, error]
   );
@@ -46,7 +53,11 @@ function FilmPagePicker(): JSX.Element | null{
     return <NotFoundPage />;
   }
 
-  if (selectedFilm === null || error !== null) {
+  if (error) {
+    return <ErrorPage />;
+  }
+
+  if (selectedFilm === null) {
     return <Spinner />;
   }
 
