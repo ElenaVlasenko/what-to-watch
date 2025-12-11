@@ -8,7 +8,7 @@ const createSliceWithThunks = buildCreateSlice({
   creators: { asyncThunk: asyncThunkCreator },
 });
 
-type CommentsState = {
+export type CommentsState = {
   comments: Comment[];
   isCommentAddingInProgress: boolean;
   isCommentWasAdded: boolean;

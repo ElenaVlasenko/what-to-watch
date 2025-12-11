@@ -5,6 +5,7 @@ import store from './store/store';
 import { StrictMode } from 'react';
 import { fetchFilmsAction, fetchPromoAction } from './store/films-slice';
 import { checkAuthAction } from './store/user-slice';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +18,9 @@ store.dispatch(checkAuthAction());
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <App/>
+      <HelmetProvider>
+        <App/>
+      </HelmetProvider>
     </Provider>
   </StrictMode>
 );

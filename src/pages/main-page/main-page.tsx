@@ -10,6 +10,7 @@ import { selectPromoFilm, selectGenres, selectDisplayedFilms, selectDisplayedFil
 import PromoFilm from '../../components/promo-film/promo-film';
 import { selectErrorMessage } from '../../store/error-slice';
 import ErrorPage from '../error-page/error-page';
+import { Helmet } from 'react-helmet-async';
 
 function MainPage(): JSX.Element {
 
@@ -32,6 +33,13 @@ function MainPage(): JSX.Element {
 
   return (
     <>
+      <Helmet>
+        <title>WTW — смотрите фильмы онлайн</title>
+        <meta
+          name="description"
+          content="Онлайн кинотеатр WTW. Большая коллекция фильмов различных жанров. Смотрите в отличном качестве."
+        />
+      </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
           <img
