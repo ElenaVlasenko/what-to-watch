@@ -1,1 +1,1 @@
-export const BASE_URL = '/what-to-watch';
+export const BASE_URL = '';
