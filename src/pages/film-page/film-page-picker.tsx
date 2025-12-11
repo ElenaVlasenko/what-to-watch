@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import FilmPage from './film-page';
 import { fetchFilmAction, resetFilmNotFound, selectIsFilmLoading, selectIsFilmNotFound, selectSelectedFilm } from '../../store/film-slice';
-import { useEffect } from 'react';
+import { JSX, useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { fetchSimilarFilmsAction, selectIsSimilarFilmsLoading, selectIsSimilarFilmsNotFound, selectSimilarFilms } from '../../store/similar-films-slice';
 import { fetchCommentsAction } from '../../store/comments-slice';

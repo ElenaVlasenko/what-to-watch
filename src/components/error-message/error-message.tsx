@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { useAppSelector } from '../../hooks/hooks';
 import { selectErrorMessage } from '../../store/error-slice';
 import './error-message.css';

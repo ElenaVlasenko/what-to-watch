@@ -1,10 +1,11 @@
-import { name, date, lorem, datatype} from 'faker';
+import { faker } from '@faker-js/faker';
 import { Comment } from './types';
+const { string, number, person, lorem, date } = faker;
 
 export const makeFakeComment = (): Comment => ({
-  id: datatype.uuid(),
+  id: string.uuid(),
   date: date.recent().toString(),
-  user: name.title(),
+  user: person.firstName(),
   comment: lorem.text(),
-  rating: datatype.number(),
+  rating: number.int(),
 });

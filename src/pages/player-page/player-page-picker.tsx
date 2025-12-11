@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { useEffect } from 'react';
+import { JSX, useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PlayerPage from './player-page';
 import { fetchVideoLinkAction, selectVideoLink } from '../../store/player-slice';

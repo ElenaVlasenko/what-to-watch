@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FilmListItem } from '../../types';
 import { AppRoute } from '../../const';
-import { useRef, useState } from 'react';
+import { JSX, useRef, useState } from 'react';
 
 export type Props = Pick<FilmListItem, 'name' | 'previewImage' | 'id' | 'previewVideoLink'> & {
   onCardMouseEnter: (id: string) => void;

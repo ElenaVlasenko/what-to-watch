@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { useAppDispatch } from '../../hooks/hooks';
 import { increaseDisplayedFilmsNumber } from '../../store/films-slice';
 

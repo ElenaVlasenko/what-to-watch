@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PageRoute } from '../../const';
+import { JSX } from 'react';
 
 type Props = {
   className?: string;

@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import './spinner.css';
 
 function Spinner(): JSX.Element {

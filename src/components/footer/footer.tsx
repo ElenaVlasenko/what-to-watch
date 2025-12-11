@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import Logo from '../logo/logo';
 
 function Footer(): JSX.Element {

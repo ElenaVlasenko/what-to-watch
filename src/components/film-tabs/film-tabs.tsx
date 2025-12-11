@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { JSX, MouseEventHandler } from 'react';
 import { FilmTab } from '../../const';
 import cn from 'classnames';
 

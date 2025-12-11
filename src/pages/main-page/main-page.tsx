@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { JSX, useEffect } from 'react';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import GenreTabs from '../../components/genre-tabs/genre-tabs';
@@ -10,7 +10,6 @@ import { selectPromoFilm, selectGenres, selectDisplayedFilms, selectDisplayedFil
 import PromoFilm from '../../components/promo-film/promo-film';
 import { selectErrorMessage } from '../../store/error-slice';
 import ErrorPage from '../error-page/error-page';
-import { Helmet } from 'react-helmet-async';
 
 function MainPage(): JSX.Element {
 
@@ -33,13 +32,11 @@ function MainPage(): JSX.Element {
 
   return (
     <>
-      <Helmet>
-        <title>WTW — смотрите фильмы онлайн</title>
-        <meta
-          name="description"
-          content="Онлайн кинотеатр WTW. Большая коллекция фильмов различных жанров. Смотрите в отличном качестве."
-        />
-      </Helmet>
+      <title>WTW — смотрите фильмы онлайн</title>
+      <meta
+        name="description"
+        content="Онлайн кинотеатр WTW. Большая коллекция фильмов различных жанров. Смотрите в отличном качестве."
+      />
       <section className="film-card">
         <div className="film-card__bg">
           <img

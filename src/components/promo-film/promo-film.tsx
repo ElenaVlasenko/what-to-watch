@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { PromoFilm as TPromoFilm } from '../../types';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 

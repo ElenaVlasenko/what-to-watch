@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Comment } from '../../types';
 import { format } from 'date-fns';
 

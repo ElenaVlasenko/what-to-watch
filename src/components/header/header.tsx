@@ -3,6 +3,7 @@ import { PageRoute } from '../../const';
 import Logo from '../logo/logo';
 import { logoutAction, selectUser } from '../../store/user-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { JSX } from 'react';
 
 type UserBlockProps = {
   avatarUrl: string;

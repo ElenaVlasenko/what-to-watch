@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { JSX, MouseEventHandler } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { resetDisplayedFilmsNumber, selectSelectedGenre, setSelectedGenre } from '../../store/films-slice';
 import GenreTabsItem from './genre-tabs-item';

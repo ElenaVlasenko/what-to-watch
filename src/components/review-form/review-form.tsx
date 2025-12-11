@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, JSX, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { addCommentAction, selectIsCommentAddingInProgress } from '../../store/comments-slice';
 import { useNavigate } from 'react-router-dom';

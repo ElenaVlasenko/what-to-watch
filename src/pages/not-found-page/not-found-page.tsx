@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { JSX } from 'react';
 
 function NotFoundPage(): JSX.Element {
   return (

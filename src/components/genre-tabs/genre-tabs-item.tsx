@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { JSX } from 'react';
 
 type Props = {
   genre: string;

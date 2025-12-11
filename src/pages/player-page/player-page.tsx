@@ -1,4 +1,4 @@
-import { useRef, useState, MouseEvent, useEffect } from 'react';
+import { useRef, useState, MouseEvent, useEffect, JSX } from 'react';
 import { isNil } from 'lodash';
 import { useAppSelector } from '../../hooks/hooks';
 import { selectFilmName, selectVideoLink } from '../../store/player-slice';

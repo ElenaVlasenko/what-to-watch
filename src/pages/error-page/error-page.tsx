@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/hooks';
 import { resetErrorMessage } from '../../store/error-slice';
+import { JSX } from 'react';
 
 function ErrorPage(): JSX.Element {
 

@@ -1,6 +1,7 @@
 import ReviewForm from '../../components/review-form/review-form';
 import Header from '../../components/header/header';
 import { Film } from '../../types';
+import { JSX } from 'react';
 
 type Props = {
   selectedFilm: Film;

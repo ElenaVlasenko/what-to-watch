@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Film } from '../../types';
 import { getRatingName } from '../../utils';
 

@@ -3,6 +3,7 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { setVideoLink } from '../../store/player-slice';
 import { fetchIsFavoritesAction, selectAddingToFavoritesOfferIds, selectAuthorizationStatus, selectMyFilms } from '../../store/user-slice';
+import { JSX } from 'react';
 
 type Props = {
   id: string;

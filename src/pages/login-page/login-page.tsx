@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, JSX, useState } from 'react';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { loginAction } from '../../store/user-slice';

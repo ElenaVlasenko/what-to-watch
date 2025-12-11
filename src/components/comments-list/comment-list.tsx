@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Comment } from '../../types';
 import CommentItemOfAList from './comment-item-of-a-list';
 

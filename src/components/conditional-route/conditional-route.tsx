@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { PageRoute } from '../../const';
+import { JSX } from 'react';
 
 type Props = {
   condition: boolean;

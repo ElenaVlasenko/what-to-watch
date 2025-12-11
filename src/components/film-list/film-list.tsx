@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { JSX, useCallback, useState } from 'react';
 import FilmItemOfAList, { Props as FilmCardProps } from './film-item-of-a-list';
 
 type Props = {
