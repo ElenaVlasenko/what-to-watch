@@ -6,6 +6,8 @@ import { getRunTime } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
+const playerPosterUrl = new URL('../../../public/img/player-poster.jpg', import.meta.url).href;
+
 function PlayerPage(): JSX.Element {
   const videoLink = useAppSelector(selectVideoLink);
   const filmName = useAppSelector(selectFilmName);
@@ -84,7 +86,7 @@ function PlayerPage(): JSX.Element {
 
   return (
     <div className="player">
-      <video ref={vidRef} className="player__video" poster="img/player-poster.jpg" muted autoPlay>
+      <video ref={vidRef} className="player__video" poster={playerPosterUrl} muted autoPlay>
         <source src={videoLink} type="video/mp4" />
       </video>
       <button onClick={handleExit} type="button" className="player__exit">
