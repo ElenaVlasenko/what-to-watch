@@ -4,7 +4,7 @@ import { JSX } from 'react';
 
 type Props = {
   condition: boolean;
-  routOnFalse: keyof typeof PageRoute;
+  routOnFalse: typeof PageRoute[keyof typeof PageRoute];
   children: JSX.Element;
 };
 
