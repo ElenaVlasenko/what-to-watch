@@ -1,4 +1,4 @@
-import { AppRoute, DEFAULT_SIMILAR_COUNT, ServerRoute } from '../const';
+import { DEFAULT_SIMILAR_COUNT, ServerRoute } from '../const';
 import { Film, FilmListItem, PromoFilm } from '../types';
 import api from './api';
 
@@ -19,7 +19,7 @@ const filmsApi = {
   },
 
   async getSimilar(id: FilmListItem['id'], limit = DEFAULT_SIMILAR_COUNT): Promise<FilmListItem[]> {
-    const { data } = await api.get<FilmListItem[]>(`${AppRoute.Films}/${id}${ServerRoute.Similar}`);
+    const { data } = await api.get<FilmListItem[]>(`${ServerRoute.Films}/${id}${ServerRoute.Similar}`);
     return data.slice(0, limit);
   }
 } as const;
