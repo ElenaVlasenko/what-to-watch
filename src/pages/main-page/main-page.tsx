@@ -11,6 +11,7 @@ import PromoFilm from '../../components/promo-film/promo-film';
 import { selectErrorMessage } from '../../store/error-slice';
 import ErrorPage from '../error-page/error-page';
 
+
 function MainPage(): JSX.Element {
 
   const dispatch = useAppDispatch();
@@ -40,8 +41,8 @@ function MainPage(): JSX.Element {
       <section className="film-card">
         <div className="film-card__bg">
           <img
-            src="%BASE_URL%img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={promoFilm?.posterImage}
+            alt={promoFilm?.}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
