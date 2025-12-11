@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { AuthorizationStatus, PageRoute } from '../const';
 import MainPage from '../pages/main-page/main-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
@@ -70,11 +70,11 @@ function App(): JSX.Element {
   return (
     <>
       <ErrorMessage />
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           {isLoading ? getOnLoadingRoutes() : getInitializedAppRoutes()}
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
