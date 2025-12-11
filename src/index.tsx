@@ -1,3 +1,5 @@
+import '../public/css/main.min.css';
+
 import ReactDOM from 'react-dom/client';
 import App from './app/app';
 import { Provider } from 'react-redux';
