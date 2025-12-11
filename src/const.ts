@@ -1,18 +1,21 @@
+import { BASE_URL } from '../const';
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN'
 }
 
-export enum AppRoute {
-  Main = '/',
-  Login = '/login',
-  MyList = '/mylist',
-  Films = '/films/',
-  Id = ':id',
-  FilmReview = '/review',
-  Player = '/player/'
-}
+export const AppRoute = {
+  Main: `${BASE_URL}/`,
+  Login: `${BASE_URL}/login`,
+  MyList: `${BASE_URL}/mylist`,
+  Films: `${BASE_URL}/films/`,
+  Id: ':id',
+  FilmReview: '/review',
+  Player: `${BASE_URL}/player/`
+} as const;
+
 export enum ServerRoute {
   Films = '/films',
   Promo = '/promo',
@@ -23,14 +26,14 @@ export enum ServerRoute {
   Favorites = '/favorite'
 }
 
-export enum PageRoute {
-  Main = AppRoute.Main,
-  Login = AppRoute.Login,
-  MyList = AppRoute.MyList,
-  Film = `${AppRoute.Films}${AppRoute.Id}`,
-  FilmComment = `${AppRoute.Films}${AppRoute.Id}${AppRoute.FilmReview}`,
-  Player = `${AppRoute.Player}${AppRoute.Id}`
-}
+export const PageRoute = {
+  Main: AppRoute.Main,
+  Login:  AppRoute.Login,
+  MyList:  AppRoute.MyList,
+  Film:  `${AppRoute.Films}${AppRoute.Id}`,
+  FilmComment:  `${AppRoute.Films}${AppRoute.Id}${AppRoute.FilmReview}`,
+  Player:  `${AppRoute.Player}${AppRoute.Id}`
+} as const;
 
 export enum FilmTab {
   OverView = 'OverView',

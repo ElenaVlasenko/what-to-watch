@@ -42,7 +42,7 @@ function MainPage(): JSX.Element {
         <div className="film-card__bg">
           <img
             src={promoFilm?.posterImage}
-            alt={promoFilm?.}
+            alt={promoFilm?.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
