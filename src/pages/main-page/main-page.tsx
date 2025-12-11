@@ -40,7 +40,7 @@ function MainPage(): JSX.Element {
       <section className="film-card">
         <div className="film-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
+            src="%BASE_URL%img/bg-the-grand-budapest-hotel.jpg"
             alt="The Grand Budapest Hotel"
           />
         </div>
