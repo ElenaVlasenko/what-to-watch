@@ -1,0 +1,39 @@
+name: Playwright Tests
+
+on:
+  workflow_dispatch: # возможность запускать workflow вручную
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        
+    - name: Install dependencies
+      run: npm ci || npm install
+      
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+      
+    - name: Run Playwright Scenario 2 (Headless)
+      run: npx playwright test tests/scenario2.spec.ts
+      env:
+        BASE_URL: "https://elenavlasenko.github.io/what-to-watch/"
+
+    - name: Upload Scenario 2 Artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: scenario-2-artifacts
+        path: artifacts/
+        retention-days: 30
