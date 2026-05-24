@@ -4,7 +4,7 @@ import path from 'path';
 
 test('Scenario 2: View movie (headless and no login)', async ({ page }) => {
   // Возвращаемся на главную/хостинг
-  await page.goto('/');
+  await page.goto('./');
 
   // Выбираем фильм из топа каталога
   const firstFilm = page.locator('.small-film-card').first();
