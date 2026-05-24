@@ -25,6 +25,10 @@ jobs:
           mkdir actions_artifacts
           echo "prev.event.number=${{ github.event.number }}" > actions_artifacts/env
           mv dist actions_artifacts
+          if [[ -d "playwright-report" ]]
+          then
+            mv playwright-report actions_artifacts
+          fi
 
       - name: Save build
         uses: actions/upload-artifact@master
