@@ -4,7 +4,7 @@ test.use({ headless: false }); // Scenario 1 runs with UI (headed)
 
 test('Scenario 1: Add to favorites', async ({ page }) => {
   // 1. Возвращаемся на главную/хостинг
-  await page.goto('/');
+  await page.goto('./');
 
   // Авторизуемся для возможности добавлять в избранное
   await page.click('text=Sign in');

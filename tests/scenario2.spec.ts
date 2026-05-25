@@ -19,6 +19,7 @@ test('Scenario 2: View movie (headless and no login)', async ({ page }) => {
 
   // Папка для артефактов
   const artifactsDir = path.join(process.cwd(), 'artifacts');
+  
   if (!fs.existsSync(artifactsDir)) {
     fs.mkdirSync(artifactsDir);
   }
