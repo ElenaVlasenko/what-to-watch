@@ -49,17 +49,25 @@ const userSlice = createSliceWithThunks({
     },
   },
   reducers: (create) => ({
-    loginAction: create.asyncThunk<User, AuthData , { extra: { userApi: UserApi }}>(
-      (authData, { extra: { userApi }, dispatch }) => userApi.login(authData).catch((err) => {
-        showErrorMessage(err, dispatch);
-        throw err;
-      }),
+    loginAction: create.asyncThunk<{ user: User; myFilms: FilmListItem[] }, AuthData , { extra: { userApi: UserApi; myListApi: MyListApi }}>(
+      async (authData, { extra: { userApi, myListApi }, dispatch }) => {
+        const user = await userApi.login(authData).catch((err) => {
+          showErrorMessage(err, dispatch);
+          throw err;
+        });
+        const myFilms = await myListApi.getList().catch((err) => {
+          showErrorMessage(err, dispatch);
+          throw err;
+        });
+        return { user, myFilms };
+      },
       {
         pending: (state) => {
           state.isUserDataLoading = true;
         },
         fulfilled: (state, action) => {
-          state.user = action.payload;
+          state.user = action.payload.user;
+          state.myFilms = action.payload.myFilms;
           state.isUserDataLoading = false;
         },
         rejected: (state) => {
@@ -76,6 +84,7 @@ const userSlice = createSliceWithThunks({
         fulfilled: (state) => {
           state.user = null;
           state.token = null;
+          state.myFilms = [];
         },
       }
     ),
