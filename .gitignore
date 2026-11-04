@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+/hw-vk-tests/playwright-report/
+/hw-vk-tests/test-results/
 
 # production
 /dist
