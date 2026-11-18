@@ -1,5 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 import { comments, films, initialFavorite, promo, user } from './data';
+import { PageFactory } from './pages/page.factory';
 
 interface ApiCall {
   method: string;
@@ -10,10 +11,14 @@ interface ApiCall {
 interface Fixtures {
   authenticated: boolean;
   api: { calls: ApiCall[]; unexpected: string[] };
+  pages: PageFactory;
 }
 
 export const test = base.extend<Fixtures>({
   authenticated: [false, { option: true }],
+  pages: async ({ page }, use) => {
+    await use(new PageFactory(page));
+  },
   api: [async ({ page, authenticated }, use) => {
     let signedIn = authenticated;
     let favorites = [initialFavorite];
