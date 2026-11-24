@@ -11,6 +11,7 @@ export function createLoginPage(page: Page): LoginPage {
   const emailInput = page.getByLabel('Email address', { exact: true });
   const passwordInput = page.getByLabel('Password', { exact: true });
   const submitButton = page.getByRole('button', { name: 'Sign in', exact: true });
+  const errorMessage = page.getByTestId('sign-in-error');
 
   async function expectOpened(): Promise<void> {
     await expect(page).toHaveURL(/#\/login$/);
@@ -21,7 +22,7 @@ export function createLoginPage(page: Page): LoginPage {
     await expect(submitButton).toBeVisible();
   }
 
-    async function open() {
+  async function open() {
     await page.goto('./#/login');
     await expectOpened();
   }
@@ -31,8 +32,10 @@ export function createLoginPage(page: Page): LoginPage {
     await passwordInput.fill(password);
     await submitButton.click();
   }
+
   async function expectPasswordValidationError() {
-    await expect(page.locator('.sign-in__message')).toHaveText(
+    await expect(errorMessage).toBeVisible();
+    await expect(errorMessage).toHaveText(
       'Password must includes at least one digit and one letter.',
     );
     await expectOpened();
@@ -42,6 +45,6 @@ export function createLoginPage(page: Page): LoginPage {
     open,
     expectOpened,
     submit,
-    expectPasswordValidationError
+    expectPasswordValidationError,
   };
 }

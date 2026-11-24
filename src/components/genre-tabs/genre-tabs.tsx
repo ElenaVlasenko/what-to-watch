@@ -23,7 +23,7 @@ function GenreTabs({ genres }: Props): JSX.Element {
   const selectedGenre = useAppSelector(selectSelectedGenre);
 
   return (
-    <ul onClick={handleOnClick} className="catalog__genres-list">{genres.map((genre) => <GenreTabsItem key={genre} genre={genre} selectedGenre={selectedGenre} />)}</ul>
+    <ul onClick={handleOnClick} className="catalog__genres-list" data-testid="genre-list">{genres.map((genre) => <GenreTabsItem key={genre} genre={genre} selectedGenre={selectedGenre} />)}</ul>
   );
 }
 

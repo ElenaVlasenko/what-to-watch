@@ -52,7 +52,7 @@ function MainPage(): JSX.Element {
         </div>
       </section>
       <div className="page-content">
-        <section className="catalog">
+        <section className="catalog" data-testid="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreTabs genres={[ALL_GENRES, ...filmGenres]} />
           <FilmList films={films} />

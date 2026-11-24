@@ -7,8 +7,12 @@ export interface FilmPage {
 }
 
 export function createFilmPage(page: Page): FilmPage {
-  const film = page.locator('section.film-card--full');
+  const film = page.getByTestId('film-page');
   const navigation = film.getByRole('navigation');
+  const detailsLink = navigation.getByRole('link', { name: 'Details', exact: true });
+  const detailsItem = navigation.getByRole('listitem').filter({
+    has: page.getByRole('link', { name: 'Details', exact: true }),
+  });
 
   async function expectOpened(name: string) {
     await expect(page).toHaveURL(/#\/films\/[^/?#]+(?:\?.*)?$/);
@@ -18,12 +22,13 @@ export function createFilmPage(page: Page): FilmPage {
   }
 
   async function openDetails() {
-    await navigation.getByRole('link', { name: 'Details', exact: true }).click();
+    await detailsLink.click();
   }
 
   async function expectDetails() {
-    await expect(navigation.locator('.film-nav__item--active'))
-      .toHaveText('Details');
+    await expect(detailsItem).toBeVisible();
+    await expect(detailsItem)
+      .toHaveClass(/(?:^|\s)film-nav__item--active(?:\s|$)/);
     for (const label of ['Director', 'Genre', 'Released']) {
       const detail = film.locator('.film-card__details-item').filter({
         has: page.getByText(label, { exact: true }),
@@ -36,6 +41,6 @@ export function createFilmPage(page: Page): FilmPage {
   return {
     expectOpened,
     openDetails,
-    expectDetails
+    expectDetails,
   };
 }
