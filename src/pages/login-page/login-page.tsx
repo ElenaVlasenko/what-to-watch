@@ -53,7 +53,7 @@ function LoginPage(): JSX.Element {
       </header>
       <div className="sign-in user-page__content">
         <form onSubmit={handleSubmit} action="#" className="sign-in__form">
-          <div className="sign-in__message">
+          <div className="sign-in__message" data-testid="sign-in-error">
             <p>{errorMessages}</p>
           </div>
           <div className="sign-in__fields">

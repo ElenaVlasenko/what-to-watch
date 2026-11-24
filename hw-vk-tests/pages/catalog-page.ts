@@ -8,15 +8,19 @@ export interface CatalogPage {
 }
 
 export function createCatalogPage(page: Page): CatalogPage {
-  const catalog = page.locator('section.catalog');
-  const genres = catalog.locator('.catalog__genres-list');
-  const cards = catalog.locator('article.small-film-card');
+  const catalog = page.getByTestId('catalog');
+  const genres = catalog.getByTestId('genre-list');
+  const cards = catalog.getByRole('article');
+  const allGenresItem = genres.getByRole('listitem').filter({
+    has: page.getByRole('link', { name: 'All genres', exact: true }),
+  });
   const signIn = page.locator('header').getByText('Sign in', { exact: true });
 
   async function expectLoaded(): Promise<void> {
     await expect(genres).toBeVisible();
-    await expect(genres.locator('.catalog__genres-item--active'))
-      .toHaveText('All genres');
+    await expect(allGenresItem).toBeVisible();
+    await expect(allGenresItem)
+      .toHaveClass(/(?:^|\s)catalog__genres-item--active(?:\s|$)/);
     await expect(cards.first()).toBeVisible();
   }
 
@@ -34,7 +38,7 @@ export function createCatalogPage(page: Page): CatalogPage {
   }
 
   async function openSignIn() {
-      await signIn.click();
+    await signIn.click();
   }
 
   return {

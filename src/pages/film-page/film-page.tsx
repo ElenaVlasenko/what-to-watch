@@ -42,7 +42,7 @@ function FilmPage({ selectedFilm, similarFilms }: Props): JSX.Element {
 
   return (
     <>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" data-testid="film-page">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
